@@ -21,7 +21,7 @@ Basically do this:
 ``` git clone https://github.com/SeeenyaOhar/transactions-api.git ```
 2. Install Python and Poetry. You can find Python version in the poetry file, but currently it's <b>```^3.10```</b>
 3. Once everything is ready, run this to install all the dependencies. This will basically take every dependency from <i> poetry.lock </i> file and install it for your system: <br/> ``` poetry install ```
-4. Now, we have to set up the environment variables(e.g. for JWT signing). You can find these in <b><i>Dockerfile</i></b>.
+4. Now, we have to set up the environment variables(e.g. for JWT signing). You can find these in <b><i>[Dockerfile](./Dockerfile)</i></b>.
 5. Now you can finally run the app: ``` flask run ```, and you will see something like this:
 
 ```
