@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "transactions"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^2.2.3"
+sqlalchemy = "^2.0.6"
+alembic = "^1.10.2"
+flask-jwt-extended = "^4.4.4"
+bcrypt = "^4.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
