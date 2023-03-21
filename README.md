@@ -1,10 +1,10 @@
 # Transactions API
 
-> This repo is a task task. It's <b>NOT</b> a real project.
+> This repo is a test task. It's <b>NOT</b> a real project.
 > I wanted to make it as fast as I can, and meet the requirements.
 ## Usage
 Basically, I've already deployed the API, so the only thing you have to do is use it.
-Open [this](./openapi.yaml) file with Swagger and see it.
+Open [this](./openapi.yaml) file with Swagger for more information.
 
 ## Deployment
 <img src="https://developers.redhat.com/sites/default/files/styles/article_feature/public/blog/2014/05/homepage-docker-logo.png?itok=zx0e-vcP"  
