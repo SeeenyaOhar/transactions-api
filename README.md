@@ -5,7 +5,7 @@
 ## Usage
 Basically, I've already deployed the API, so the only thing you have to do is use it.
 Open [this](./openapi.yaml) file with Swagger for more information.
-
+Cloud Provider: Microsoft Azure
 ## Deployment
 <img src="https://developers.redhat.com/sites/default/files/styles/article_feature/public/blog/2014/05/homepage-docker-logo.png?itok=zx0e-vcP"  
 width="64" height="64">
