@@ -3,24 +3,57 @@ info:
   title: Transactions API - OpenAPI 3.0
   version: 1.0.0
 servers:
-  - url: https://petstore3.swagger.io/api/v3
+  - url: http://20.31.156.125/api/
 tags:
   - name: user
     description: User operations
   - name: transaction
     description: Access to transactions
 paths:
-  /api/transaction:
+  /transaction:
     get:
+      tags:
+        - transaction
       summary: Get all transactions of a user
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+      security:
+        - JWTSecurity: []
     post:
       summary: Create a new transaction
-  /api/user:
+      tags:
+        - transaction
+      requestBody:
+        $ref: "#/components/requestBodies/Transaction"
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                
+                type: object
+                properties:
+                  id:
+                    description: Id of a created transaction
+                    type: integer
+                    
+                example: "123"
+      security:
+        - JWTSecurity: []
+                
+  /user:
     post:
       tags:
         - user
-      summary: Create user
-      description: This can only be done by the logged in user.
+      summary: Create/sign up a user
       operationId: createUser
       requestBody:
         description: Created user object
@@ -45,7 +78,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
     patch:
-      description: Modify user
+      summary: Modify a user
       tags: 
         - user
       requestBody:
@@ -66,13 +99,21 @@ paths:
             content:
               application/json:
                 schema:
-                  $ref: '#/components/schemas/User'
+                  type: object
+                  properties:
+                    msg:
+                      type: string
+                      example: "Sucessfully changed the user"
+                    user: 
+                      $ref: '#/components/schemas/User'
               application/xml:
                 schema:
                   $ref: '#/components/schemas/User'
           '400':
             description: There might be some problem with fields specified(e.g. incorrect email address)
-  /api/user/login:
+      security:
+        - JWTSecurity: []
+  /user/login:
     post:
       tags:
         - user
@@ -130,6 +171,7 @@ components:
         date:
           type: string
           format: date-time
+          example: "24/02/2022 05:00:00"
         category:
           type: string
         tag:
@@ -175,15 +217,7 @@ components:
             items:
               $ref: '#/components/schemas/User'
   securitySchemes:
-    petstore_auth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: https://petstore3.swagger.io/oauth/authorize
-          scopes:
-            write:pets: modify pets in your account
-            read:pets: read your pets
-    api_key:
-      type: apiKey
-      name: api_key
-      in: header
+    JWTSecurity:
+      type: http
+      scheme: bearer
+    

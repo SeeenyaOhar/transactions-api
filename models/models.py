@@ -17,7 +17,8 @@ from .validators import NameValidator
 
 
 class Base(DeclarativeBase):
-    pass
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 
 class User(Base):
@@ -32,6 +33,7 @@ class User(Base):
     transactions: Mapped[List["Transaction"]] = relationship(back_populates="user")
     _email_validator = EmailValidator()
     _name_validator = NameValidator()
+
 
     def __repr__(self) -> str:
         return f"User(id={self.id!r}, name={self.name!r}, surname={self.surname!r})"
@@ -59,9 +61,6 @@ class Transaction(Base):
     tag: Mapped[Optional[str]] = mapped_column(String(30))
     user_id: Mapped[int] = mapped_column(ForeignKey("user_account.id"), nullable=False)
     user: Mapped["User"] = relationship(back_populates="transactions")
-
-    def as_dict(self):
-        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
     def __repr__(self) -> str:
         return f"Transaction(id={self.id!r}, amount={self.amount!r}, " \
